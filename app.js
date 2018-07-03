@@ -1,50 +1,50 @@
-// var express = require('express');
-// var path = require('path');
-// var favicon = require('serve-favicon');
-// var logger = require('morgan');
-// var bodyParser = require('body-parser');
-
 var express = require('express');
 var path = require('path');
-var serveStatic = require('serve-static');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var bodyParser = require('body-parser');
 
-app = express();
-app.use(serveStatic(__dirname + "/dist"));
+// var express = require('express');
+// var path = require('path');
+// var serveStatic = require('serve-static');
+//
+// app = express();
+// app.use(serveStatic(__dirname + "/dist"));
+//
+// var port = process.env.PORT || 5000;
+// app.listen(port);
+//
+// console.log('server started '+ port);
+//
+// app.get('*', function (req, res) {
+//     res.sendFile(__dirname + '/dist/index.html')
+// })
+var book = require('./routes/route');
+var app = express();
 
-var port = process.env.PORT || 5000;
-app.listen(port);
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({'extended':'false'}));
+app.use(express.static(path.join(__dirname, 'dist')));
+app.use('/books', express.static(path.join(__dirname, 'dist')));
+app.use('/book', book);
 
-console.log('server started '+ port);
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
 
-app.get('*', function (req, res) {
-    res.sendFile(__dirname + '/dist/index.html')
-})
-// var book = require('./routes/route');
-// var app = express();
-//
-// app.use(logger('dev'));
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({'extended':'false'}));
-// app.use(express.static(path.join(__dirname, 'dist')));
-// app.use('/books', express.static(path.join(__dirname, 'dist')));
-// app.use('/book', book);
-//
-// // catch 404 and forward to error handler
-// app.use(function(req, res, next) {
-//   var err = new Error('Not Found');
-//   err.status = 404;
-//   next(err);
-// });
-//
-// // error handler
-// app.use(function(err, req, res, next) {
-//   // set locals, only providing error in development
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get('env') === 'development' ? err : {};
-//
-//   // render the error page
-//   res.status(err.status || 500);
-//   res.render('error');
-// });
-//
-// module.exports = app;
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+module.exports = app;
