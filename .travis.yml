@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - "8"
+sudo: true
+cache:
+  directories:
+  - node_modules
+node_js: stable
+branches:
+  - master
+deploy:
+  provider: heroku
+  api_key:
+    secure: $KEY
+  app: iotremotecontrol
+  on:
+    repo: Ivxn-Experimental/NodeJS-VueJSTemplate
+    branch: master
+before_install:
+  - nvm install 8.5.0
+  - nvm use 8.5.0
+  - npm install -g vue-cli
