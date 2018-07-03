@@ -15,6 +15,10 @@ var port = process.env.PORT || 5000;
 app.listen(port);
 
 console.log('server started '+ port);
+
+app.get('*', function (req, res) {
+    res.sendFile(__dirname + '/dist/index.html')
+})
 // var book = require('./routes/route');
 // var app = express();
 //
