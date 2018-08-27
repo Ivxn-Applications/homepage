@@ -1,18 +1,17 @@
 <template>
   <v-content>
     <section>
-      <v-parallax :src="require('@/assets/chaquira.jpg')" height="250">
+      <v-parallax :src="require('@/assets/chaquira.jpg')" height="300">
       </v-parallax>
     </section>
 
     <section>
-        <v-jumbotron :gradient="gradient" dark height="250" :src="require('@/assets/chaquira.jpg')">
+        <v-jumbotron color="colorparallax" dark height="300" :src="require('@/assets/chaquira.jpg')">
           <v-container fill-height>
             <v-layout align-center>
               <v-avatar
                 :tile="tile"
-                :size="200"
-                class="text-xs-left">
+                class="text-xs-center">
                 <img src="./../assets/profileimage.jpg" alt="avatar">
               </v-avatar>
             </v-layout>
@@ -21,21 +20,27 @@
     </section>
 
     <section>
-       <v-parallax :src="require('@/assets/chaquira.jpg')" height="250">
+       <v-parallax :src="require('@/assets/chaquira.jpg')" height="300">
       </v-parallax>
     </section>
 
        <section>
-        <v-jumbotron :gradient="gradient" dark height="250" class="elevation-20" :src="require('@/assets/chaquira.jpg')">
+        <v-jumbotron :gradient="gradient" dark height="300" class="elevation-20" :src="require('@/assets/chaquira.jpg')">
+          <v-contaner fill-height>
+            <div class="flex white--text display-1 text-xs-center">Delivering the best solution</div>
+          </v-contaner>
           <v-container fill-height>
-            <v-layout align-center>
-              <v-avatar
-                :tile="tile"
-                :size="200"
-                class="text-xs-left">
-                <img src="./../assets/profileimage.jpg" alt="avatar">
+             <v-layout
+                align-center
+                justify-space-around
+                wrap
+              >
+              <v-avatar v-for="icon in icons"
+              :key="icon"
+              >
+                <img :src="require('@/assets/'+icon+'.png')">
               </v-avatar>
-            </v-layout>
+             </v-layout>
           </v-container>
         </v-jumbotron>
     </section>
@@ -46,7 +51,9 @@
 <script>
 export default {
   data: () => ({
-    gradient: 'to top, #FFFFFF, transparent'
+    colorparallax: 'transparent',
+    gradient: 'to top, #000000, transparent',
+    icons: ['angular', 'vue', 'nodejs', 'java', 'python', 'qt', 'kb8', 'docker', 'rasp']
   })
 }
 </script>
