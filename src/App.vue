@@ -18,11 +18,6 @@
       Apps
       <v-icon>apps</v-icon>
     </v-tab>
-
-    <v-tab href="#tab-3">
-      Photography
-      <v-icon>photo_library</v-icon>
-    </v-tab>
   </v-tabs>
 
   <router-view></router-view>

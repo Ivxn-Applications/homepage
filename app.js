@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({extended : false }));
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/', express.static(path.join(__dirname, 'dist')));
 app.use('/',routes);
+//app.use(favicon(__dirname + '/dist/'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
